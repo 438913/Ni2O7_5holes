@@ -1007,7 +1007,21 @@ def create_edep_diag_matrix(VS,A,ep):
         diag_el += util.get_orb_edep(orb2,z2,ep)
         diag_el += util.get_orb_edep(orb3,z3,ep)
         diag_el += util.get_orb_edep(orb4,z4,ep)
-        diag_el += util.get_orb_edep(orb5,z5,ep)        
+        diag_el += util.get_orb_edep(orb5,z5,ep)
+        Ni_i, Cu_i = util.get_Number_d(state)
+        if Ni_i == 1:
+            diag_el += 3 * A / 2
+        if Cu_i == 1:
+            diag_el += 3 * A / 2
+        if Ni_i == 0:
+            diag_el += 2 * A
+        if Cu_i == 0:
+            diag_el += 2 * A
+        if Ni_i == 3:
+            diag_el += 3 * A / 2
+        if Cu_i == 3:
+            diag_el += 3 * A / 2
+
 
         data.append(diag_el); row.append(i); col.append(i)
 #         print (i, diag_el)
@@ -1061,91 +1075,91 @@ def get_double_occu_list(VS):
         # find out which two holes are on 000/200
         # idx is to label which hole is not on 000/200
         if (x1, y1, z1)==(x2, y2, z2):
-            if x1==0:
+            if x1==-1:
                 util.get_double_append(i,345,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x1==2:
+            elif x1==1:
                 util.get_double_append(i,345,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)
            
             
         if (x1, y1, z1)==(x3, y3, z3):
-            if x1==0:
+            if x1==-1:
                 util.get_double_append(i,245,s1,o1,x1,y1,z1,s3,o3,x3,y3,z3,s2,o2,x2,y2,z2,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x1==2:
+            elif x1==1:
                 util.get_double_append(i,245,s1,o1,x1,y1,z1,s3,o3,x3,y3,z3,s2,o2,x2,y2,z2,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)                
 
                     
         if (x1, y1, z1)==(x4, y4, z4):
-            if x1==0: 
+            if x1==-1:
                 util.get_double_append(i,235,s1,o1,x1,y1,z1,s4,o4,x4,y4,z4,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s5,o5,x5,y5,z5,\
                                    d_000_list,p_list,idx_000,hole345_000_part,double_000_part)
-            elif x1==2: 
+            elif x1==1:
                 util.get_double_append(i,235,s1,o1,x1,y1,z1,s4,o4,x4,y4,z4,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s5,o5,x5,y5,z5,\
                                    d_200_list,p_list,idx_200,hole345_200_part,double_200_part)  
          
         
         if (x2, y2, z2)==(x3, y3, z3):
-            if x2==0:            
+            if x2==-1:
                 util.get_double_append(i,145,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s1,o1,x1,y1,z1,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x2==2:            
+            elif x2==1:
                 util.get_double_append(i,145,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s1,o1,x1,y1,z1,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)
                
                 
         if (x2, y2, z2)==(x4, y4, z4):
-            if x2==0:
+            if x2==-1:
                 util.get_double_append(i,135,s2,o2,x2,y2,z2,s4,o4,x4,y4,z4,s1,o1,x1,y1,z1,s3,o3,x3,y3,z3,s5,o5,x5,y5,z5,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x2==2:
+            elif x2==1:
                 util.get_double_append(i,135,s2,o2,x2,y2,z2,s4,o4,x4,y4,z4,s1,o1,x1,y1,z1,s3,o3,x3,y3,z3,s5,o5,x5,y5,z5,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part) 
              
                 
         if (x3, y3, z3)==(x4, y4, z4):
-            if x3==0:
+            if x3==-1:
                 util.get_double_append(i,125,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s5,o5,x5,y5,z5,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x3==2:
+            elif x3==1:
                 util.get_double_append(i,125,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s5,o5,x5,y5,z5,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)
 
 
         if (x1, y1, z1)==(x5, y5, z5):
-            if x1==0:
+            if x1==-1:
                 util.get_double_append(i,234,s1,o1,x1,y1,z1,s5,o5,x5,y5,z5,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x1==2:
+            elif x1==1:
                 util.get_double_append(i,234,s1,o1,x1,y1,z1,s5,o5,x5,y5,z5,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)     
          
         
         if (x2, y2, z2)==(x5, y5, z5):
-            if x2==0:
+            if x2==-1:
                 util.get_double_append(i,134,s2,o2,x2,y2,z2,s5,o5,x5,y5,z5,s1,o1,x1,y1,z1,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x2==2:
+            elif x2==1:
                 util.get_double_append(i,134,s2,o2,x2,y2,z2,s5,o5,x5,y5,z5,s1,o1,x1,y1,z1,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)  
                 
                 
         if (x3, y3, z3)==(x5, y5, z5):
-            if x3==0:
+            if x3==-1:
                 util.get_double_append(i,124,s3,o3,x3,y3,z3,s5,o5,x5,y5,z5,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s4,o4,x4,y4,z4,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x3==2:
+            elif x3==1:
                 util.get_double_append(i,124,s3,o3,x3,y3,z3,s5,o5,x5,y5,z5,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s4,o4,x4,y4,z4,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)   
                 
                 
         if (x4, y4, z4)==(x5, y5, z5):
-            if x4==0:
+            if x4==-1:
                 util.get_double_append(i,123,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,\
                                    d_000_list,p_list,idx_000,hole345_000_part, double_000_part)
-            elif x4==2:
+            elif x4==1:
                 util.get_double_append(i,123,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,\
                                    d_200_list,p_list,idx_200,hole345_200_part, double_200_part)            
 
@@ -1158,7 +1172,7 @@ def get_double_occu_list(VS):
     print ("len(apz_list)", len(apz_list))    
     print ("len(idx_000)", len(idx_000))
     print ("len(idx_200)", len(idx_200))
-
+# apz_list是空的列表
     
     return d_000_list, idx_000, hole345_000_part,  double_000_part, \
            d_200_list, idx_200, hole345_200_part, double_200_part, \
@@ -1197,10 +1211,6 @@ def create_interaction_matrix_ALL_syms(VS,d_double, p_double, double_part, idx, 
     
     channels = ['1A1','1A2','3A2','1B1','3B1','1E','3E','1B2','3B2']
 
-    if os.path.isfile('./test.txt'):
-        os.remove('./test.txt')
-    f = open('./test.txt','w',1) 
-    
     for sym in channels:
         state_order, interaction_mat, Stot, Sz_set, AorB = get_interaction_mat(A, sym)
         sym_orbs = state_order.keys()

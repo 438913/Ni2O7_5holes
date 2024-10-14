@@ -61,11 +61,11 @@ def get_unit_cell_rep(x,y,z):
             'Ox1', 'Ox2', 'Oy1', 'Oy2', 'NotOnSublattice'
     '''
     # Note that x, y, z can be negative
-    if (x,y,z)==(0,0,0) or (x,y,z)==(2,0,0): 
+    if (x,y,z)==(-1,0,0) or (x,y,z)==(1,0,0):
         return pam.Ni_orbs
-    elif (x,y,z)==(-1,0,0) or (x,y,z)==(1,0,0) or (x,y,z)==(3,0,0): 
+    elif (x,y,z)==(-2,0,0) or (x,y,z)==(0,0,0) or (x,y,z)==(2,0,0):
         return pam.O1_orbs
-    elif (x,y,z)==(0,1,0) or (x,y,z)==(0,-1,0) or (x,y,z)==(2,1,0) or (x,y,z)==(2,-1,0): 
+    elif (x,y,z)==(-1,1,0) or (x,y,z)==(-1,-1,0) or (x,y,z)==(1,1,0) or (x,y,z)==(1,-1,0):
         return pam.O2_orbs
      
     else:
