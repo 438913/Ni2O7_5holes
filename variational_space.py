@@ -18,31 +18,12 @@ def create_state(slabel):
     variational space because the hole-hole Manhattan distance
     exceeds Mc.
     '''
-    s1 = slabel[0];
-    orb1 = slabel[1];
-    x1 = slabel[2];
-    y1 = slabel[3];
-    z1 = slabel[4];
-    s2 = slabel[5];
-    orb2 = slabel[6];
-    x2 = slabel[7];
-    y2 = slabel[8];
-    z2 = slabel[9];
-    s3 = slabel[10];
-    orb3 = slabel[11];
-    x3 = slabel[12];
-    y3 = slabel[13];
-    z3 = slabel[14];
-    s4 = slabel[15];
-    orb4 = slabel[16];
-    x4 = slabel[17];
-    y4 = slabel[18];
-    z4 = slabel[19];
-    s5 = slabel[20];
-    orb5 = slabel[21];
-    x5 = slabel[22];
-    y5 = slabel[23];
-    z5 = slabel[24];
+    s1 = slabel[0];orb1 = slabel[1];x1 = slabel[2];y1 = slabel[3];z1 = slabel[4];
+    s2 = slabel[5];orb2 = slabel[6];x2 = slabel[7];y2 = slabel[8];z2 = slabel[9];
+    s3 = slabel[10];orb3 = slabel[11];x3 = slabel[12];y3 = slabel[13];z3 = slabel[14];
+    s4 = slabel[15];orb4 = slabel[16];x4 = slabel[17];y4 = slabel[18];z4 = slabel[19];
+    s5 = slabel[20];orb5 = slabel[21];x5 = slabel[22];y5 = slabel[23];z5 = slabel[24];
+
     assert not ((x3, y3, z3) == (x1, y1, z1) and s3 == s1 and orb3 == orb1)
     assert not ((x1, y1, z1) == (x2, y2, z2) and s1 == s2 and orb1 == orb2)
     assert not ((x3, y3, z3) == (x2, y2, z2) and s3 == s2 and orb3 == orb2)
@@ -75,22 +56,13 @@ def create_state(slabel):
 
     return state
 
-
 def reorder_state(slabel):
     '''
     reorder the s, orb, coord's labeling a state to prepare for generating its canonical state
     Useful for three hole case especially !!!
     '''
-    s1 = slabel[0];
-    orb1 = slabel[1];
-    x1 = slabel[2];
-    y1 = slabel[3];
-    z1 = slabel[4];
-    s2 = slabel[5];
-    orb2 = slabel[6];
-    x2 = slabel[7];
-    y2 = slabel[8];
-    z2 = slabel[9];
+    s1 = slabel[0]; orb1 = slabel[1];x1 = slabel[2];y1 = slabel[3];z1 = slabel[4];
+    s2 = slabel[5];orb2 = slabel[6];x2 = slabel[7];y2 = slabel[8];z2 = slabel[9];
 
     # default
     state_label = slabel
@@ -274,7 +246,6 @@ def make_state_canonical(state):
 #     out = abs(x1 - x2) + abs(y1 - y2)
 #     return out
 
-
 def check_in_vs_condition(x1, y1):
     '''
     Restrictions: the distance between one hole and Ni-site (0,0)
@@ -300,31 +271,11 @@ def check_in_vs_condition1(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5):
 
 
 def check_Pauli(slabel):
-    s1 = slabel[0];
-    orb1 = slabel[1];
-    x1 = slabel[2];
-    y1 = slabel[3];
-    z1 = slabel[4];
-    s2 = slabel[5];
-    orb2 = slabel[6];
-    x2 = slabel[7];
-    y2 = slabel[8];
-    z2 = slabel[9];
-    s3 = slabel[10];
-    orb3 = slabel[11];
-    x3 = slabel[12];
-    y3 = slabel[13];
-    z3 = slabel[14];
-    s4 = slabel[15];
-    orb4 = slabel[16];
-    x4 = slabel[17];
-    y4 = slabel[18];
-    z4 = slabel[19];
-    s5 = slabel[20];
-    orb5 = slabel[21];
-    x5 = slabel[22];
-    y5 = slabel[23];
-    z5 = slabel[24];
+    s1 = slabel[0];orb1 = slabel[1];x1 = slabel[2];y1 = slabel[3];z1 = slabel[4];
+    s2 = slabel[5];orb2 = slabel[6];x2 = slabel[7];y2 = slabel[8];z2 = slabel[9];
+    s3 = slabel[10];orb3 = slabel[11];x3 = slabel[12];y3 = slabel[13];z3 = slabel[14];
+    s4 = slabel[15];orb4 = slabel[16];x4 = slabel[17];y4 = slabel[18];z4 = slabel[19];
+    s5 = slabel[20];orb5 = slabel[21];x5 = slabel[22];y5 = slabel[23];z5 = slabel[24];
 
     if (s1 == s2 and orb1 == orb2 and x1 == x2 and y1 == y2 and z1 == z2) or \
             (s1 == s3 and orb1 == orb3 and x1 == x3 and y1 == y3 and z1 == z3) or \
@@ -336,7 +287,6 @@ def check_Pauli(slabel):
             (s2 == s5 and orb2 == orb5 and x2 == x5 and y2 == y5 and z2 == z5) or \
             (s3 == s5 and orb3 == orb5 and x3 == x5 and y3 == y5 and z3 == z5) or \
             (s4 == s5 and orb4 == orb5 and x4 == x5 and y4 == y5 and z4 == z5):
-
         return False
     else:
         return True
@@ -354,23 +304,17 @@ def exist_d6_d7_state(o1, o2, o3, o4, o5, x1, x2, x3, x4, x5):
             (o2 in pam.Ni_orbs and o4 in pam.Ni_orbs and o5 in pam.Ni_orbs and x2 == x4 == x5) or \
             (o3 in pam.Ni_orbs and o4 in pam.Ni_orbs and o5 in pam.Ni_orbs and x3 == x4 == x5):
         return False
-
     else:
         return True
 
 
-def filter_d6_state(o1, o2, o3, o4, o5, x1, x2, x3, x4, x5):
+def exist_d6_state(o1, o2, o3, o4, o5, x1, x2, x3, x4, x5):
     if (o2 in pam.Ni_orbs and o3 in pam.Ni_orbs and o4 in pam.Ni_orbs and o5 in pam.Ni_orbs and x2 == x3 == x4 == x5) or \
-            (
-                    o1 in pam.Ni_orbs and o3 in pam.Ni_orbs and o4 in pam.Ni_orbs and o5 in pam.Ni_orbs and x1 == x3 == x4 == x5) or \
-            (
-                    o1 in pam.Ni_orbs and o2 in pam.Ni_orbs and o4 in pam.Ni_orbs and o5 in pam.Ni_orbs and x1 == x2 == x4 == x5) or \
-            (
-                    o1 in pam.Ni_orbs and o2 in pam.Ni_orbs and o3 in pam.Ni_orbs and o5 in pam.Ni_orbs and x1 == x2 == x3 == x5) or \
-            (
-                    o1 in pam.Ni_orbs and o2 in pam.Ni_orbs and o3 in pam.Ni_orbs and o4 in pam.Ni_orbs and x1 == x2 == x3 == x4):
+            (o1 in pam.Ni_orbs and o3 in pam.Ni_orbs and o4 in pam.Ni_orbs and o5 in pam.Ni_orbs and x1 == x3 == x4 == x5) or \
+            (o1 in pam.Ni_orbs and o2 in pam.Ni_orbs and o4 in pam.Ni_orbs and o5 in pam.Ni_orbs and x1 == x2 == x4 == x5) or \
+            (o1 in pam.Ni_orbs and o2 in pam.Ni_orbs and o3 in pam.Ni_orbs and o5 in pam.Ni_orbs and x1 == x2 == x3 == x5) or \
+            (o1 in pam.Ni_orbs and o2 in pam.Ni_orbs and o3 in pam.Ni_orbs and o4 in pam.Ni_orbs and x1 == x2 == x3 == x4):
         return False
-
     else:
         return True
 
@@ -432,9 +376,7 @@ class VariationalSpace:
             tx3, ty3, tz3 = state['hole3_coord']
             tx4, ty4, tz4 = state['hole4_coord']
             tx5, ty5, tz5 = state['hole5_coord']
-
-            print(i, ts1, torb1, tx1, ty1, tz1, ts2, torb2, tx2, ty2, ts3, torb3, tx3, ty3, tz3, ts4, torb4, tx4, ty4,
-                  tz4, ts5, torb5, tx5, ty5, tz5)
+            print(i, ts1, torb1, tx1, ty1, tz1, ts2, torb2, tx2, ty2, ts3, torb3, tx3, ty3, tz3, ts4, torb4, tx4, ty4,tz4, ts5, torb5, tx5, ty5, tz5)
 
     def create_lookup_tbl(self):
         '''
@@ -453,7 +395,7 @@ class VariationalSpace:
 
         for ux in range(-Mc, Mc + 1):
             Bu = Mc - abs(ux)
-            funlist_u = [util.lamlist1(range(-Bu, Bu + 1), [0, 1])]
+            funlist_u = [util.lamlist1(range(-Bu, Bu + 1), [0])]
             for f1_u in funlist_u[0]:
                 uy, uz = f1_u()
                 orb1s = lat.get_unit_cell_rep(ux, uy, uz)
@@ -462,7 +404,7 @@ class VariationalSpace:
 
                 for vx in range(-Mc, Mc + 1):
                     Bv = Mc - abs(vx)
-                    funlist_v = [util.lamlist1(range(-Bv, Bv + 1), [0, 1])]
+                    funlist_v = [util.lamlist1(range(-Bv, Bv + 1), [0])]
                     for f1_v in funlist_v[0]:
                         vy, vz = f1_v()
                         orb2s = lat.get_unit_cell_rep(vx, vy, vz)
@@ -471,7 +413,7 @@ class VariationalSpace:
 
                         for tx in range(-Mc, Mc + 1):
                             Bt = Mc - abs(tx)
-                            funlist_t = [util.lamlist1(range(-Bt, Bt + 1), [0, 1])]
+                            funlist_t = [util.lamlist1(range(-Bt, Bt + 1), [0])]
                             for f1_t in funlist_t[0]:
                                 ty, tz = f1_t()
                                 orb3s = lat.get_unit_cell_rep(tx, ty, tz)
@@ -480,7 +422,7 @@ class VariationalSpace:
 
                                 for wx in range(-Mc, Mc + 1):
                                     Bw = Mc - abs(wx)
-                                    funlist_w = [util.lamlist1(range(-Bw, Bw + 1), [0, 1])]
+                                    funlist_w = [util.lamlist1(range(-Bw, Bw + 1), [0])]
                                     for f1_w in funlist_w[0]:
                                         wy, wz = f1_w()
                                         orb4s = lat.get_unit_cell_rep(wx, wy, wz)
@@ -489,7 +431,7 @@ class VariationalSpace:
 
                                         for px in range(-Mc, Mc + 1):
                                             Bp = Mc - abs(px)
-                                            funlist_p = [util.lamlist1(range(-Bp, Bp + 1), [0, 1])]
+                                            funlist_p = [util.lamlist1(range(-Bp, Bp + 1), [0])]
                                             for f1_p in funlist_p[0]:
                                                 py, pz = f1_p()
                                                 orb5s = lat.get_unit_cell_rep(px, py, pz)
@@ -514,19 +456,17 @@ class VariationalSpace:
                                                             if sss != ['dn', 'dn', 'up', 'up', 'up'] and \
                                                                     sss != ['dn', 'dn', 'dn', 'up', 'up']:
                                                                 continue
+                                                            # if not sss == ['up', 'up', 'up', 'up', 'up']:
+                                                            #     continue
 
-                                                        # neglect d6 state !!
-                                                        # if exist_d6_d7_state(orb1, orb2, orb3, orb4, orb5, ux, vx, tx, wx, px):
-                                                        #     continue
-                                                        if not filter_d6_state(orb1, orb2, orb3, orb4, orb5, ux, vx, tx, wx, px):
+
+                                                        # neglect d7 state !!
+                                                        if not exist_d6_state(orb1, orb2, orb3, orb4, orb5, ux, vx, tx, wx, px):
                                                             continue
-                                                        # if not exist_d6_d7_state(orb1, orb2, orb3, orb4, orb5, ux, vx, tx,
-                                                        #                      wx, px):
-                                                        #     continue
+
 
                                                             # consider Pauli principle
-                                                        slabel = [s1, orb1, ux, uy, uz, s2, orb2, vx, vy, vz, s3, orb3,
-                                                                  tx, ty, tz, \
+                                                        slabel = [s1, orb1, ux, uy, uz, s2, orb2, vx, vy, vz, s3, orb3,tx, ty, tz, \
                                                                   s4, orb4, wx, wy, wz, s5, orb5, px, py, pz]
                                                         if not check_Pauli(slabel):
                                                             continue
@@ -535,7 +475,7 @@ class VariationalSpace:
                                                         canonical_state, _, _ = make_state_canonical(state)
 
                                                         if self.filter_func(canonical_state):
-                                                            #                                                             print (canonical_state)
+                                                        # print (canonical_state)
                                                             uid = self.get_uid(canonical_state)
                                                             lookup_tbl.append(uid)
 
@@ -650,8 +590,7 @@ class VariationalSpace:
         o5 = lat.orb_int[orb5]
 
         uid = i1 + 2 * i2 + 4 * i3 + 8 * i4 + 16 * i5 + 32 * z1 + 64 * z2 + 128 * z3 + 256 * z4 + 512 * z5 + 1024 * o1 + 1024 * N * o2 + 1024 * N2 * o3 + 1024 * N3 * o4 + 1024 * N4 * o5 + 1024 * N5 * (
-                (y1 + s) + (x1 + s) * B1 + (y2 + s) * B2 + (x2 + s) * B3 + (y3 + s) * B4 + (x3 + s) * B5 + (
-                y4 + s) * B6 + (x4 + s) * B7 + (y5 + s) * B8 + (x5 + s) * B9)
+                (y1 + s) + (x1 + s) * B1 + (y2 + s) * B2 + (x2 + s) * B3 + (y3 + s) * B4 + (x3 + s) * B5 + (y4 + s) * B6 + (x4 + s) * B7 + (y5 + s) * B8 + (x5 + s) * B9)
         #         print (state)
         # check if uid maps back to the original state, namely uid's uniqueness
         tstate = self.get_state(uid)
@@ -672,10 +611,8 @@ class VariationalSpace:
         tx5, ty5, tz5 = tstate['hole5_coord']
 
         assert ((s1, orb1, x1, y1, z1, s2, orb2, x2, y2, z2, s3, orb3, x3, y3, z3, s4, orb4, x4, y4, z4, s5, orb5, x5,
-                 y5, z5) == \
-                (ts1, torb1, tx1, ty1, tz1, ts2, torb2, tx2, ty2, tz2, ts3, torb3, tx3, ty3, tz3, ts4, torb4, tx4, ty4,
+                 y5, z5) == (ts1, torb1, tx1, ty1, tz1, ts2, torb2, tx2, ty2, tz2, ts3, torb3, tx3, ty3, tz3, ts4, torb4, tx4, ty4,
                  tz4, ts5, torb5, tx5, ty5, tz5))
-
         return uid
 
     def get_state(self, uid):
@@ -758,8 +695,7 @@ class VariationalSpace:
         s4 = lat.int_spin[i4]
         s5 = lat.int_spin[i5]
 
-        slabel = [s1, orb1, x1, y1, z1, s2, orb2, x2, y2, z2, s3, orb3, x3, y3, z3, s4, orb4, x4, y4, z4, s5, orb5, x5,
-                  y5, z5]
+        slabel = [s1, orb1, x1, y1, z1, s2, orb2, x2, y2, z2, s3, orb3, x3, y3, z3, s4, orb4, x4, y4, z4, s5, orb5, x5,y5, z5]
         #         print (slabel)
         state = create_state(slabel)
 

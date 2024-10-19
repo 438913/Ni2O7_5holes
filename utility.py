@@ -6,10 +6,10 @@ import os
 import sys
 import time
 import shutil
-import numpy
+import numpy as np
 
 import parameters as pam
-import hamiltonian_d10U_2 as ham
+import hamiltonian as ham
 import lattice as lat
 import variational_space as vs 
 import utility as util
@@ -188,7 +188,7 @@ def get_orb_edep(orb,z,ep):
 def get_double_append(i,n,s1,o1,x1,y1,z1,s2,o2,x2,y2,z2,s3,o3,x3,y3,z3,s4,o4,x4,y4,z4,s5,o5,x5,y5,z5,\
                       d_list,p_list,idx,hole345_part, double_part): 
     if o1 in pam.Ni_orbs and o2 in pam.Ni_orbs: #and not (o3 in pam.Ni_Cu_orbs and o4 in pam.Ni_Cu_orbs):
-        if x3 != x1 and x4 != x1 and x5 != x1:
+        if (x3, y3) != (x1, y1) and (x4, y4) != (x1, y1) and (x5, y5) != (x1, y1):
             d_list.append(i)
             idx.append(n); hole345_part.append([s3, o3, x3, y3, z3,s4, o4, x4, y4, z4,s5, o5, x5, y5, z5])
             double_part.append([s1,o1,x1,y1,z1,s2,o2,x2,y2,z2])

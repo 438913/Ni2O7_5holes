@@ -20,8 +20,6 @@ def find_singlet_triplet_partner_d_double(VS, d_part, index, h345_part):
     index: index of the singlet/triplet partner state in the VS
     phase: phase factor with which the partner state needs to be multiplied.
     '''
-    get_lookup_tle_index = []
-    phase = 0
     if index == 145:
         slabel = h345_part[0:5] + [d_part[0]] + d_part[6:10] + [d_part[5]] + d_part[1:5] + h345_part[5:15]
     elif index == 245:
@@ -29,14 +27,11 @@ def find_singlet_triplet_partner_d_double(VS, d_part, index, h345_part):
     elif index == 345:
         slabel = [d_part[0]] + d_part[6:10] + [d_part[5]] + d_part[1:5] + h345_part[0:5] + h345_part[5:15]
     elif index == 135:
-        slabel = h345_part[0:5] + [d_part[0]] + d_part[6:10] + h345_part[5:10] + [d_part[5]] + d_part[1:5] + h345_part[
-                                                                                                             10:15]
+        slabel = h345_part[0:5] + [d_part[0]] + d_part[6:10] + h345_part[5:10] + [d_part[5]] + d_part[1:5] + h345_part[10:15]
     elif index == 235:
-        slabel = [d_part[0]] + d_part[6:10] + h345_part[0:5] + h345_part[5:10] + [d_part[5]] + d_part[1:5] + h345_part[
-                                                                                                             10:15]
+        slabel = [d_part[0]] + d_part[6:10] + h345_part[0:5] + h345_part[5:10] + [d_part[5]] + d_part[1:5] + h345_part[10:15]
     elif index == 125:
-        slabel = h345_part[0:5] + h345_part[5:10] + [d_part[0]] + d_part[6:10] + [d_part[5]] + d_part[1:5] + h345_part[
-                                                                                                             10:15]
+        slabel = h345_part[0:5] + h345_part[5:10] + [d_part[0]] + d_part[6:10] + [d_part[5]] + d_part[1:5] + h345_part[10:15]
     elif index == 123:
         slabel = h345_part[0:15] + [d_part[0]] + d_part[6:10] + [d_part[5]] + d_part[1:5]
     elif index == 124:
@@ -46,16 +41,11 @@ def find_singlet_triplet_partner_d_double(VS, d_part, index, h345_part):
     elif index == 234:
         slabel = [d_part[0]] + d_part[6:10] + h345_part[0:15] + [d_part[5]] + d_part[1:5]
 
-    # if vs.check_Pauli(slabel):
-    if True:
-        exists_partner = True
-        tmp_state = vs.create_state(slabel)
-        partner_state, _, _ = vs.make_state_canonical(tmp_state)
-        get_lookup_tle_index = VS.get_index(partner_state)
-        phase = -1.0
-    else:
-        exists_partner = False
-    return get_lookup_tle_index, phase, exists_partner
+    tmp_state = vs.create_state(slabel)
+    partner_state, _, _ = vs.make_state_canonical(tmp_state)
+    phase = -1.0
+
+    return VS.get_index(partner_state), phase
 
 
 def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_part, idx, hole345_part):
@@ -88,9 +78,7 @@ def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_par
 
     for i in range(VS.dim):
         if i not in d_double:
-            data.append(np.sqrt(2.0));
-            row.append(i);
-            col.append(i)
+            data.append(np.sqrt(2.0));row.append(i); col.append(i)
 
     for i, double_id in enumerate(d_double):
         s1 = double_part[i][0]
@@ -104,9 +92,7 @@ def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_par
             # see case 2 of make_state_canonical in vs.py, namely
             # for same spin states, always order the orbitals
             S_d8_val[double_id] = 1
-            data.append(np.sqrt(2.0));
-            row.append(double_id);
-            col.append(double_id)
+            data.append(np.sqrt(2.0));row.append(double_id);col.append(double_id)
             if s1 == 'up':
                 Sz_d8_val[double_id] = 1
             elif s1 == 'dn':
@@ -131,17 +117,14 @@ def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_par
             tx3, ty3, tz3 = tstate['hole3_coord']
             tx4, ty4, tz4 = tstate['hole4_coord']
             tx5, ty5, tz5 = tstate['hole5_coord']
-            print('Error state', double_id, ts1, torb1, tx1, ty1, tz1, ts2, torb2, tx2, ty2, tz2, ts3, torb3, tx3, ty3,
-                  tz3, \
+            print('Error state', double_id, ts1, torb1, tx1, ty1, tz1, ts2, torb2, tx2, ty2, tz2, ts3, torb3, tx3, ty3,tz3, \
                   ts4, torb4, tx4, ty4, tz4, ts5, torb5, tx5, ty5, tz5)
             break
 
         elif s1 == 'up' and s2 == 'dn':
             if o1 == o2:
                 if o1 != 'dxz' and o1 != 'dyz':
-                    data.append(np.sqrt(2.0));
-                    row.append(double_id);
-                    col.append(double_id)
+                    data.append(np.sqrt(2.0)); row.append(double_id);col.append(double_id)
                     S_d8_val[double_id] = 0
                     Sz_d8_val[double_id] = 0
                     count_singlet += 1
@@ -157,22 +140,15 @@ def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_par
                     elif idx[i] == 145:
                         slabel = hole345_part[i][0:5] + [s1, 'dyz'] + dpos + [s2, 'dyz'] + dpos + hole345_part[i][5:15]
                     elif idx[i] == 135:
-                        slabel = hole345_part[i][0:5] + [s1, 'dyz'] + dpos + hole345_part[i][5:10] + [s2,
-                                                                                                      'dyz'] + dpos + \
-                                 hole345_part[i][10:15]
+                        slabel = (hole345_part[i][0:5] + [s1, 'dyz'] + dpos + hole345_part[i][5:10] + [s2,'dyz'] + dpos + hole345_part[i][10:15])
                     elif idx[i] == 235:
-                        slabel = [s1, 'dyz'] + dpos + hole345_part[i][0:5] + hole345_part[i][5:10] + [s2,
-                                                                                                      'dyz'] + dpos + \
-                                 hole345_part[i][10:15]
+                        slabel = ([s1, 'dyz'] + dpos + hole345_part[i][0:5] + hole345_part[i][5:10] + [s2, 'dyz'] + dpos + hole345_part[i][10:15])
                     elif idx[i] == 125:
-                        slabel = hole345_part[i][0:5] + hole345_part[i][5:10] + [s1, 'dyz'] + dpos + [s2,
-                                                                                                      'dyz'] + dpos + \
-                                 hole345_part[i][10:15]
+                        slabel = (hole345_part[i][0:5] + hole345_part[i][5:10] + [s1, 'dyz'] + dpos + [s2, 'dyz'] + dpos + hole345_part[i][10:15])
                     elif idx[i] == 123:
                         slabel = hole345_part[i][0:15] + [s1, 'dyz'] + dpos + [s2, 'dyz'] + dpos
                     elif idx[i] == 124:
-                        slabel = hole345_part[i][0:10] + [s1, 'dyz'] + dpos + hole345_part[i][10:15] + [s2,
-                                                                                                        'dyz'] + dpos
+                        slabel = hole345_part[i][0:10] + [s1, 'dyz'] + dpos + hole345_part[i][10:15] + [s2, 'dyz'] + dpos
                     elif idx[i] == 134:
                         slabel = hole345_part[i][0:5] + [s1, 'dyz'] + dpos + hole345_part[i][5:15] + [s2, 'dyz'] + dpos
                     elif idx[i] == 234:
@@ -182,22 +158,14 @@ def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_par
                     new_state, _, _ = vs.make_state_canonical(tmp_state)
                     e2 = VS.get_index(new_state)
 
-                    data.append(1.0);
-                    row.append(double_id);
-                    col.append(double_id)
-                    data.append(1.0);
-                    row.append(e2);
-                    col.append(double_id)
+                    data.append(1.0); row.append(double_id); col.append(double_id)
+                    data.append(1.0); row.append(e2); col.append(double_id)
                     AorB_d8_sym[double_id] = 1
                     S_d8_val[double_id] = 0
                     Sz_d8_val[double_id] = 0
                     count_singlet += 1
-                    data.append(1.0);
-                    row.append(double_id);
-                    col.append(e2)
-                    data.append(-1.0);
-                    row.append(e2);
-                    col.append(e2)
+                    data.append(1.0);row.append(double_id);col.append(e2)
+                    data.append(-1.0);row.append(e2);col.append(e2)
                     AorB_d8_sym[e2] = -1
                     S_d8_val[e2] = 0
                     Sz_d8_val[e2] = 0
@@ -206,19 +174,13 @@ def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_par
 
             else:
                 if double_id not in count_list:
-                    j, ph, exists_partner = find_singlet_triplet_partner_d_double(VS, double_part[i], idx[i], hole345_part[i])
-                    if not exists_partner:
-                        continue
+                    j, ph = find_singlet_triplet_partner_d_double(VS, double_part[i], idx[i], hole345_part[i])
 
                     # append matrix elements for singlet states
                     # convention: original state col i stores singlet and 
                     #             partner state col j stores triplet
-                    data.append(1.0);
-                    row.append(double_id);
-                    col.append(double_id)
-                    data.append(-ph);
-                    row.append(j);
-                    col.append(double_id)
+                    data.append(1.0);row.append(double_id);col.append(double_id)
+                    data.append(-ph);row.append(j);col.append(double_id)
                     S_d8_val[double_id] = 0
                     Sz_d8_val[double_id] = 0
 
@@ -227,12 +189,8 @@ def create_singlet_triplet_basis_change_matrix_d_double(VS, d_double, double_par
                     #print "state j = ",'up',orb2,'dn',orb1
 
                     # append matrix elements for triplet states
-                    data.append(1.0);
-                    row.append(double_id);
-                    col.append(j)
-                    data.append(ph);
-                    row.append(j);
-                    col.append(j)
+                    data.append(1.0); row.append(double_id); col.append(j)
+                    data.append(ph); row.append(j); col.append(j)
                     S_d8_val[j] = 1
                     Sz_d8_val[j] = 0
 
@@ -258,3 +216,70 @@ def print_VS_after_basis_change(VS, S_val, Sz_val):
         #if ts1=='up' and ts2=='up':
         if torb1 == 'dx2y2' and torb2 == 'px':
             print(i, ts1, torb1, tx1, ty1, tz1, ts2, torb2, tx2, ty2, tz2, 'S=', S_val[i], 'Sz=', Sz_val[i])
+
+
+def create_bonding_anti_bonding_basis_change_matrix(VS):
+    dim = VS.dim
+    data = []
+    row = []
+    col = []
+    start_time = time.time()
+    bonding_val = np.zeros(VS.dim, dtype=int)
+
+    # store index of partner state to avoid double counting
+    # otherwise, when arriving at i's partner j, its partner would be i
+    count_list = []
+
+    for i in range(0, VS.dim):
+        start_state = VS.get_state(VS.lookup_tbl[i])
+        s1 = start_state['hole1_spin']
+        s2 = start_state['hole2_spin']
+        s3 = start_state['hole3_spin']
+        s4 = start_state['hole4_spin']
+        s5 = start_state['hole5_spin']
+        orb1 = start_state['hole1_orb']
+        orb2 = start_state['hole2_orb']
+        orb3 = start_state['hole3_orb']
+        orb4 = start_state['hole4_orb']
+        orb5 = start_state['hole5_orb']
+        x1, y1, z1 = start_state['hole1_coord']
+        x2, y2, z2 = start_state['hole2_coord']
+        x3, y3, z3 = start_state['hole3_coord']
+        x4, y4, z4 = start_state['hole4_coord']
+        x5, y5, z5 = start_state['hole5_coord']
+
+        slabel = [s1, orb1, x1, y1, z1, s2, orb2, x2, y2, z2, s3, orb3, x3, y3, z3, s4, orb4, x4, y4, z4, s5, orb5, x5,y5, z5]
+
+        # Two layers of Cu and Ni exchange position and when z=1 in apz orb,it's still itself
+
+        slabel2 = [s1, orb1, -x1, y1, z1, s2, orb2, -x2, y2, z2, s3, orb3, -x3, y3, z3, s4, orb4, -x4, y4,z4, s5, orb5, -x5, y5, z5]
+        tmp_state = vs.create_state(slabel2)
+        partner_state, phase, slabel2 = vs.make_state_canonical(tmp_state)
+        #         print (phase)
+        j = VS.get_index(partner_state)
+
+        if j == i:
+            data.append(np.sqrt(2.0)); row.append(i); col.append(i)
+
+
+        else:
+            if i not in count_list:
+                # append matrix elements for bonding
+                # convention: original state col i stores bonding and
+                #             partner state col j stores anti-bonding
+                data.append(1.0);row.append(i);col.append(i)
+                data.append(phase);row.append(j);col.append(i)
+                bonding_val[i] = 1
+
+                # append matrix elements for anti-bonding
+                data.append(1.0);row.append(i);col.append(j)
+                data.append(-phase);row.append(j);col.append(j)
+                bonding_val[j] = -1
+
+                count_list.append(j)
+
+
+
+    print("basis _bonding_anti_bonding_%s seconds ---" % (time.time() - start_time))
+    return sps.coo_matrix((data, (row, col)), shape=(VS.dim, VS.dim)) / np.sqrt(2.0), bonding_val
+

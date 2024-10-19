@@ -4,7 +4,7 @@ import numpy as np
 M_PI = math.pi
 
 Mc = 2
-pressure = 29.5  # in Gpa
+pressure = 0  # in Gpa
 
 # Note that Ni-d and O-p orbitals use hole language
 # while Nd orbs use electron language
@@ -42,11 +42,20 @@ elif pressure == 29.5:
           'dxy': 1.06, \
           'dxz': 0.94, \
           'dyz': 0.94}
+    # ed = {'d3z2r2': 0.0, \
+    #       'dx2y2': 0.0, \
+    #       'dxy': 0.0, \
+    #       'dxz': 0.0, \
+    #       'dyz': 0.0}
     eps = np.arange(2.9, 2.91, 1.0)
 
 As = np.arange(6.0, 6.01, 2.0)
 B = 0.15
 C = 0.58
+# As = np.arange(6.0, 6.01, 2.0)
+# B = 0
+# C = 0
+
 #As = np.arange(100, 100.1, 1.0)
 # As = np.arange(0.0, 0.01, 1.0)
 # B = 0
@@ -63,20 +72,25 @@ if Norb == 7 or Norb == 4:
     #tpds = [0.00001]  # for check_CuO4_eigenvalues.py
     if pressure == 0:
         tpds = np.linspace(1.38, 1.38, num=1, endpoint=True)
-        tpps = [0.537]
+        # tpps = [0.537]
+        tpps = [0]
     #     tpds = [0.01]
     elif pressure == 4:
         tpds = np.linspace(1.43, 1.43, num=1, endpoint=True)
-        tpps = [0.548]
+        # tpps = [0.548]
+        tpps = [0]
     elif pressure == 8:
         tpds = np.linspace(1.46, 1.46, num=1, endpoint=True)
-        tpps = [0.554]
+        # tpps = [0.554]
+        tpps = [0]
     elif pressure == 16:
         tpds = np.linspace(1.52, 1.52, num=1, endpoint=True)
-        tpps = [0.566]
+        # tpps = [0.566]
+        tpps = [0]
     elif pressure == 29.5:
         tpds = np.linspace(1.58, 1.58, num=1, endpoint=True)
-        tpps = [0.562]
+        # tpps = [0.562]
+        tpps = [0]
     tz_a1a1 = 0.028
 
     # 29.5GPa:
@@ -84,7 +98,8 @@ if Norb == 7 or Norb == 4:
 
     tz_b1b1 = 0.047
 
-    tz_a1a1 = 0.028
+    # tz_a1a1 = 0.028
+    tz_a1a1 = 0
     tz_b1b1 = 0.047
 
 if_tz_exist = 2
